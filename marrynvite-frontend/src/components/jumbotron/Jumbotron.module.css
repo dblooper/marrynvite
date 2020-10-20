@@ -1,0 +1,44 @@
+.Jumbotron {
+    margin: 0;
+    height: 30rem;
+    color: var(--main-cardboard-color);
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    flex-direction: row;
+}
+
+.Nav{
+  height: 70px;
+}
+
+.LeftCorner {
+  position: absolute;
+  left: -21rem;
+  top: -15rem;
+  height: 700px;
+  transform: scale(-1, -1) rotate(30deg);
+}
+
+.RightCorner {
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+  width: 600px;
+
+}
+
+.CenterFlower {
+  height: 300px;
+}
+
+.Photos {
+  height: 32rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Children {
+  position: relative;
+  top: -27rem;
+}

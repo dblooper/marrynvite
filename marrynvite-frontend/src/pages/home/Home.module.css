@@ -1,0 +1,6 @@
+.Hr { 
+    width: 70%;
+    border: 0; 
+    height: 1px; 
+    background-image: linear-gradient( to left, var(--main-bkg-color), var(--main-cardboard-color), var(--main-bkg-color)); 
+  }

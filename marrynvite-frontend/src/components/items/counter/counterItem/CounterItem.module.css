@@ -1,0 +1,19 @@
+.CounterItem {
+    margin: 0.5rem;
+    padding: 0;
+    display: block;
+    text-align: center;
+}
+
+.Number {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+}
+
+.StringPeriod {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 1rem;
+}

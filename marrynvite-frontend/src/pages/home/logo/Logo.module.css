@@ -1,0 +1,29 @@
+.Logo {
+    animation-name: appearNode;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.Logo img{
+    min-height: 210px;
+}
+
+.Logo p {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.Logo .Desc {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+@keyframes appearNode {
+    0% {
+        opacity: 0%;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 100%;
+    } 
+}

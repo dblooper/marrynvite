@@ -1,0 +1,27 @@
+.Counter {
+    font-size: 1.6rem;
+    font-weight: lighter;
+    text-align: center;
+    animation-name: appearNode;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+.Counter p {
+    margin-bottom: 0;
+}
+
+.CounterItems {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes appearNode {
+    0% {
+        opacity: 0%;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 100%;
+    } 
+}

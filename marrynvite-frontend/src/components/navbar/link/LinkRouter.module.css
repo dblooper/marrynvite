@@ -1,0 +1,62 @@
+.Link {
+    box-sizing: border-box;
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--main-cardboard-color);
+    cursor: pointer;
+}
+  
+.LinkSide {
+    width: 85%;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: 0 0 18px 0px black;
+}
+
+.Up {
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: var(--main-bkg-color); 
+    color: var(--main-cardboard-color);
+    box-shadow: 0 0 18px 1px gray;
+}
+
+.SignUp {
+    border: 1px solid var(--main-cardboard-color);
+}
+
+.SignUp:hover,
+.SignUp.active {
+    background-color: var(--main-cardboard-color);
+    color: var(--main-text-color);
+}
+
+.SignUp:active {
+    transform: scale(0.98);
+}
+
+.Link:hover,
+.Link.active {
+    box-shadow: 0px 0px 8px 0px var(--main-cardboard-color);
+}
+
+.Link:active {
+    transform: scale(0.98);
+}
+
+.Up:hover {
+    background-color: var(--main-cardboard-color);
+    color: var(--main-text-color);
+    box-shadow: 0 0 18px 1px gray;
+}
+
+.Up.active {
+    box-shadow: 0 0 18px 1px gray;
+}
+
+.Up:active {
+    box-shadow: 0 0 5px 1px gray;
+}

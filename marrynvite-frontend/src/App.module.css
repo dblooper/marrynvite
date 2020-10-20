@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster');
+
+:root {
+  --main-cardboard-color: #FED0BB;
+  --main-text-color: #461220;
+  --main-bkg-color: #8C2F39;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-bkg-color);
+  color: var(--main-cardboard-color);
+  font-family: 'Lobster', cursive;
+}
+
