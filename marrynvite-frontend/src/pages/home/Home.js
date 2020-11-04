@@ -28,7 +28,7 @@ const Home = (props) => {
         </div>
         <hr className={classes.Hr}/>
         <Counter/>
-        <Cardboard>{locationCB}</Cardboard>
+        <Cardboard specialClass="Cardboard-home">{locationCB}</Cardboard>
         </div>
     )
 }

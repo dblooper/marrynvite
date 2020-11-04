@@ -8,7 +8,7 @@ import {withRouter} from 'react-router-dom' //dla celow przewinięcia
 import ScrollToTop from './components/items/scrollToTop/ScrollToTop'
 
 function App() {
-  let additionalClass = window.location.pathname === '/' ? 'Home': 'Other';
+  let additionalClass = window.location.pathname === '/' ? '' : 'HideHome';
 
   return (
     <div>

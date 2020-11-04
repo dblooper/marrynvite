@@ -1,0 +1,19 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Form p {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.Form .Content {
+    margin: 0 20rem;
+    text-align: left;
+}
+
+.Form label {
+    cursor: pointer;
+}

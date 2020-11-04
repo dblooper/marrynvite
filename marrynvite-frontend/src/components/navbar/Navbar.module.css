@@ -1,9 +1,11 @@
 .Navbar ul {
     margin: 0;
     padding: 0;
-    position: relative;
-    top: -32rem;
-    left: -20rem;
+    z-index: 1000;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    height: 70px;
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
@@ -16,7 +18,7 @@
 }
 
 .SideNav {
-    z-index: 100;
+    z-index: 1000;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

@@ -7,12 +7,12 @@ const Navbar = (props) => {
     const [linkClasses, linkFunct] = useState([''])
     useEffect(() => {
         const changeClass = () => {
-            if(window.pageYOffset <= 480) {
+            if(window.pageYOffset <= 350) {
                 if(classesAppended !== classes.Navbar) {
                     appendFunction([classes.Navbar])
                     linkFunct(['Navbar'])
                 }
-            } else if(window.pageYOffset > 480) {
+            } else if(window.pageYOffset > 150) {
                 appendFunction([classes.SideNav]);
                 linkFunct(['LinkSide'])
             }
