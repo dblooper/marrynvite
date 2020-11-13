@@ -12,7 +12,7 @@ const Confirm = (props) => {
         <div>
             <Cardboard specialClass="Cardboard-confirm">
                 <div  style={{margin: '2rem'}}>
-                    <MultiStepForm/>
+                    <MultiStepForm initial={0}/>
                 </div>
             </Cardboard>
         </div>

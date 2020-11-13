@@ -11,17 +11,10 @@ import Button from '@material-ui/core/Button';
 import Accomodation from './confirmationAdditional/Accomodation'
 import Dishes from './confirmationAdditional/Dishes';
 import TextField from '@material-ui/core/TextField';
+import Modal from '../../../../components/modal/Modal';
+import {Summary} from './Summary.js'
+import ConfirmationQuantity from './confirmationAdditional/ConfirmationQuantity';
 
-const person = [
-    {
-      value: '2',
-      label: 'Z partnerem',
-    },
-    {
-      value: '1',
-      label: 'Bez partnera',
-    }
-]
 
 export const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -35,49 +28,40 @@ export const useStyles = makeStyles((theme) => ({
     },
     helper: {
         margin: '0',
-
+        width: '100%'
     },
     button: {
         margin: theme.spacing(1,1,0,0)
+    }, 
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
     }
 }))
 
-export const ConfirmationDetails = ({formData, setForm, navigation}) => {
+export const ConfirmationDetails = ({formData, setForm, reset, navigation}) => {
     const muiClasses = useStyles();
     const [value, setValue] = React.useState('');
     const [error, setError] = React.useState(false);
     const [helperText, setHelperText] = React.useState('Wybierz jedną z dwóch opcji powyżej') 
     const [components, setComponents] = useState(<div></div>);
-    const propsAcc = {formData, setForm};
     const [confQtyComp, setConfQtyComp] = useState(<div></div>);
-    
-    const handleQtyChange = (event) => {
-        setForm(event);
+    const [backdropOpen, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [confQty, setConfQty] = useState('');
+    const propsAcc = {formData, setForm};
+    const handleBackdropClick = () => {
+        backdropOpen && !loading ? setOpen(false) : setOpen(true);
     }
-
+    let componentsToGenerate = (<div style={{margin: "0", padding: "0", boxSizing: "border-box", width: '100%', display: "flex", flexDirection: "column"}}>
+                                    <Accomodation {...propsAcc} />
+                                    <hr></hr>
+                                    <Dishes {...propsAcc} conf = {formData.confirmedQty} />
+                                </div>)
+    let confQtyCompToGenerate = <ConfirmationQuantity {...propsAcc} />
+    
     const handleRadioChange = (event) => {
         setForm(event);
-        let componentsToGenerate = <div style={{margin: "0", padding: "0", boxSizing: "border-box", width: '100%', display: "flex", flexDirection: "column"}}>
-                                        <h3 style={{margin: "0 0 1rem 0", textDecoration: "underline"}}>Super że będziecie!</h3>
-                                        <Accomodation {...propsAcc} />
-                                        <hr></hr>
-                                        <Dishes {...propsAcc}/>
-                                    </div>
-        let confQtyCompToGenerate = <TextField
-                                        id="outlined-select-confirm"
-                                        select
-                                        label="Wybierz jak spędzisz z nami czas"
-                                        defaultValue={formData.confirmedQty}
-                                        name="confirmedQty"
-                                        onChange={handleQtyChange}
-                                        variant="outlined"
-                                    >
-                                        {person.map((option) => (
-                                        <option key={option.value} value={option.value}>
-                                        {option.label}
-                                        </option>
-                                    ))}
-                                    </TextField>
         if(event.target.value === '1') {
             setComponents(componentsToGenerate)
             setConfQtyComp(confQtyCompToGenerate)
@@ -90,34 +74,34 @@ export const ConfirmationDetails = ({formData, setForm, navigation}) => {
         setError(false);
     }
 
-    const handleSubmit = (event) => {
+    const handleGoToSummary = (event) => {
         event.preventDefault();
-        console.log(formData)
-        if (formData.confirmed === '1') {
-          setHelperText('Potwierdziłeś, że będziecie uczestniczyć. Dziękujemy i czekamy na was!');
-          setError(false);
-          navigation.next()
-        } else if (formData.confirmed === '0') {
-          setHelperText('Potwierdziłeś, że nie będziecie uczestniczyć.');
-          setError(false);
+        if (formData.confirmed === '1'|| formData.confirmed === '0') {
+            handleBackdropClick();
         } else {
           setHelperText('Musisz wybrać jedną z opcji');
           setError(true);
         }
+    }
+
+    const handleSubmit = (event) => {
+        console.log(formData);
+        setLoading(true);
       };
 
-      let invitation = formData.clientPartnerName === "" ? 
+ let invitation = formData.clientPartnerName === "" ? 
       <h3>{`Witaj ${formData.clientName}! Niezmiernie nam miło że tu jesteś :)`}</h3>
-                                            :<h3>{`Witajcie ${formData.clientName} ${formData.clientPartnerName}! Niezmiernie nam miło że tu jesteście :)`}</h3>
+                                            :<h3>{`Witajcie ${formData.clientName}, ${formData.clientPartnerName}! Niezmiernie nam miło że tu jesteście :)`}</h3>     
       let instruction = formData.clientPartnerName === "" ? 
       <p>Poniżej znajdziesz kilka pytań od nas. <br/>Uzupełnij zgodnie ze swoimi preferencjami. Ułatwi nam to dostosowanie się do Twoich potrzeb.</p>
       : <p>Poniżej znajdziecie kilka pytań od nas. <br/>Uzupełnijcie je zgodnie ze swoimi preferencjami. Ułatwi nam to dostosowanie się do Twoich potrzeb.</p>
 
     return (
         <MaterialWrapper>
+            <Modal backdropOpen={backdropOpen} loading={loading} summit={handleSubmit} clicked={handleBackdropClick}><Summary {...propsAcc}></Summary></Modal>
             {invitation}
             {instruction}
-            <form onSubmit={handleSubmit} style={{width: "100%"}}>
+            <form onSubmit={handleGoToSummary} style={{width: "100%"}}>
                 <FormControl component="fieldset"
                             error={error}
                             className={muiClasses.formControl}>
@@ -138,7 +122,7 @@ export const ConfirmationDetails = ({formData, setForm, navigation}) => {
                         type="summit"
                         variant="contained"
                         color="primary"
-                    >Potwierdź</Button>
+                    >PRZEJDŹ DALEJ</Button>
                 </FormControl>
             </form>
         </MaterialWrapper>

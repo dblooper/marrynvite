@@ -1,7 +1,7 @@
 .Navbar ul {
     margin: 0;
     padding: 0;
-    z-index: 1000;
+    z-index: 200;
     position: absolute;
     top: 0rem;
     left: 0rem;
@@ -18,7 +18,7 @@
 }
 
 .SideNav {
-    z-index: 1000;
+    z-index: 200;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

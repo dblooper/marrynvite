@@ -28,17 +28,16 @@ const accomodations = [
     },
     {
       value: '1',
-      label: 'Jeden',
+      label: 'Jedno',
     }
 ]
-const Accomodation = ({formData, setForm}) => {   
+const Accomodation = ({formData, setForm, confQty}) => {   
     const muiClasses = useStyles();
     const [value, setValue] = React.useState('');
     const [accqty, accQtyChange] = React.useState(formData.confirmAccQty)
     const [error, setError] = React.useState(false);
     const [helperText, setHelperText] = React.useState('Wybierz jedną z dwóch opcji powyżej') 
     const [components, setComponents] = useState(<div></div>);
-
     const handleAccChange = (event) => {
         setForm(event);
         accQtyChange(event.target.value)
@@ -47,10 +46,10 @@ const Accomodation = ({formData, setForm}) => {
     const handleRadioChange = (event) => {
         setForm(event);
         setValue(event.target.value);
-        event.target.value === 'true' ? setComponents(<TextField
+        event.target.value === '1' ? setComponents(<TextField
                         id="outlined-select-accomodation"
                         select
-                        label="Wybierz liczbę noclegów"
+                        label="Wybierz liczbę miejsc noclegowych"
                         defaultValue={accqty}
                         name="confirmAccQty"
                         onChange={handleAccChange}
@@ -76,8 +75,8 @@ const Accomodation = ({formData, setForm}) => {
                             value={value}
                             onChange={handleRadioChange}
                 >
-                    <FormControlLabel value="true" control={<Radio />} label="Tak, potrzebujemy noclegu" />
-                    <FormControlLabel value="false" control={<Radio />} label="Nie potrzebujemy nocować" />
+                    <FormControlLabel value="1" control={<Radio />} label="Tak, potrzebujemy noclegu" />
+                    <FormControlLabel value="0" control={<Radio />} label="Nie potrzebujemy nocować" />
                 </RadioGroup>
                 <FormHelperText>{helperText}</FormHelperText>
                 {components}
