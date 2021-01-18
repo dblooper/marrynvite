@@ -19,20 +19,29 @@ export class User {
     @Column("varchar", {default: "0"})
     phoneNo: string;
 
-    @Column("integer", {default: 0})
+    @Column("integer", {default: -1})
     quantity: number;
 
-    @Column("integer", {default: 0})
+    @Column('datetime', {default: '2020-12-31'})
+    confirmationDueDate: Date;
+
+    @Column("integer", {default: -1})
     confirmed: number;
 
-    @Column("integer", {default: 0})
+    @Column("integer", {default: -1})
     confirmedQty: number;
 
-    @Column("integer", {default: 0})
+    @Column("integer", {default: -1})
     expectedAccQty: number;
 
-    @Column("integer", {default: 0})
+    @Column("integer", {default: -1})
     accomodationQty: number;
+
+    @Column("integer", {default: -2})
+    dishesForFirstPerson: number;
+
+    @Column("integer", {default: -2})
+    dishesForSecondPerson: number;
 
     @Column("varchar", {length: 5000, default:""})
     comment: string;
@@ -47,4 +56,6 @@ export class User {
     @Column('datetime', {nullable: true})
     confirmationDate: Date;
 
+    @Column('datetime', {nullable: true})
+    updateDate: Date;
 }

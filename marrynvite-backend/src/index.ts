@@ -7,6 +7,7 @@ import {Routes} from './routes'
 import {Request, Response} from "express";
 import short = require('short-uuid');
 import {CsvService} from './service/CsvService'
+import cors = require('cors');
 
 const PORT: number = parseInt(process.env.port) || 8080;
 const csvService = new CsvService();
@@ -17,16 +18,27 @@ createConnection().then(async connection => {
 
     const app = express();
     app.use(bodyParser.json());
-
+    app.use(cors())
     Routes.forEach(route => {
         (app as any)[route.method](route.route, 
             (req: Request, res: Response, next: Function) => {
                     const result = (new (route.controller as any))[route.action](req, res, next);
                     if(result instanceof Promise) {
                         result.then(result => {
-                            if(result !== null && result !== undefined) {
+                            if(result !== null && result.error !== undefined) {
+                                res.status(200)
+                                let final = {
+                                    status: -1,
+                                    response: result
+                                }
+                                res.send(final)
+                             } else if(result !== null && result.error === undefined) {
                                 res.status(route.status)
-                                res.send(result)
+                                let final = {
+                                    status: 0,
+                                    response: result
+                                }
+                                res.send(final)
                              } else {
                                 res.status(404);
                                 res.send({message: "error!"})
@@ -34,7 +46,11 @@ createConnection().then(async connection => {
                         })
                     } else if(result !== null && result !== undefined) {
                         res.status(route.status)
-                        res.json(result);
+                        let final = {
+                            status: 0,
+                            response: result
+                        }
+                        res.json(final);
                     }
             }
         )
